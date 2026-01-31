@@ -1,34 +1,24 @@
 extends CharacterBody2D
 
-const JUMP_VELOCITY = -130.0 # Increased slightly for better feel
-const JUMP_FORWARD_BOOST = 0.0 # The "force" only applied when jumping
-
-# CONTROL HOW FAST SLOPES ARE
-# Increase this to make sliding down ramps much faster
-const SLOPE_SPEED_BOOST = 50.0 
-
-# CONTROL FLAT GROUND FRICTION
-# A small amount of friction prevents sliding forever on flat ground
-const FLAT_FRICTION = 500.0
+const JUMP_VELOCITY = -400.0 # Initial upward burst
+const JUMP_FORWARD_BOOST = 0.0 # Force added when jumping
+const SLOPE_SPEED_BOOST = 50.0 # Physics acceleration on slopes
+const FLAT_FRICTION = 500.0 # Friction on flat ground
 
 var is_dead: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
-	# Allow steep slopes (80 degrees)
 	floor_max_angle = deg_to_rad(80.0)
-	
-	# Allow physics to slide us down naturally
 	floor_stop_on_slope = false
-	
-	# Snap to floor so we don't fly off bumps
 	floor_snap_length = 32.0 
 
 func die() -> void:
 	is_dead = true
 	animated_sprite.play("roll")
-	$CollisionShape2D.queue_free()
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.queue_free()
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -40,47 +30,48 @@ func _physics_process(delta: float) -> void:
 	# 1. APPLY GRAVITY
 	velocity += get_gravity() * delta
 
-	# 2. HANDLE SLOPE PHYSICS
+	# 2. HANDLE INPUT & PHYSICS
 	if is_on_floor():
 		var floor_normal = get_floor_normal()
 		
-		# If we are on a slope (normal.x is not 0), push the player down it.
-		# This makes sliding much faster than gravity alone.
-		if abs(floor_normal.x) > 0.1: # 0.1 ignores tiny bumps
+		# Slope Physics
+		if abs(floor_normal.x) > 0.1: 
 			velocity.x += floor_normal.x * SLOPE_SPEED_BOOST * delta
 		else:
-			# If we are on flat ground, apply friction to slowly stop
 			velocity.x = move_toward(velocity.x, 0, FLAT_FRICTION * delta)
 
-		# Handle Jump
+		# START JUMP
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = JUMP_VELOCITY
 			
-			# Add forward momentum to the jump
 			if velocity.x >= 0:
 				velocity.x += JUMP_FORWARD_BOOST
 			else:
 				velocity.x -= JUMP_FORWARD_BOOST
 				
-			# Turn off snapping so we can detach
-			floor_snap_length = 0.0
+			floor_snap_length = 0.0 # Detach from floor
+			
 	else:
 		# Reset snapping when in air
 		floor_snap_length = 32.0
-
+		
+		# --- HEAVY JUMP CUTOFF ---
+		# Check if player let go AND is currently moving UP
+		if Input.is_action_just_released("jump") and velocity.y < 0:
+			
+			# Smoother but still heavy:
+			velocity.y *= 0.1 # Kill 90% of momentum
+			
 	# 3. ANIMATION & FLIPPING
 	if is_on_floor():
 		if abs(velocity.x) > 10:
-			animated_sprite.play("idle")
+			animated_sprite.play("idle") # TODO: Add slide animation
 		else:
 			animated_sprite.play("idle")
 	else:
 		animated_sprite.play("jump")
 
-	# FORCE FLIP BASED ON MOVEMENT DIRECTION
-	# If sliding left (negative speed), face left.
-	# If sliding right (positive speed), face right.
-	if velocity.x > 1.0: # Using 1.0 prevents flickering at 0 speed
+	if velocity.x > 1.0: 
 		animated_sprite.flip_h = false
 	elif velocity.x < -1.0:
 		animated_sprite.flip_h = true

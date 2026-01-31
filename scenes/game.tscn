@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://dekrf8fp0hkpw"]
 
+[ext_resource type="Texture2D" uid="uid://cjfilb34t4e1y" path="res://assets/sprites/cloud.png" id="1_gee14"]
 [ext_resource type="Texture2D" uid="uid://2cy61adapmnx" path="res://assets/sprites/my_world_tileset_simple.png" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://drdfu5n3ewf1l" path="res://assets/sprites/my_world_tileset.png" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://d0f4ardtoo0a8" path="res://scenes/player.tscn" id="2_lnu2h"]
@@ -49,6 +50,24 @@ floor_max_angle = 0.0
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=198670200]
 position = Vector2(61, 43)
 zoom = Vector2(2, 2)
+
+[node name="CloudParticles" type="CPUParticles2D" parent="Player/Camera2D" unique_id=423660491]
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 426)
+amount = 10
+texture = ExtResource("1_gee14")
+lifetime = 10.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(640, 150)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+scale_amount_max = 2.5
 
 [node name="Label" type="Label" parent="." unique_id=1266554937]
 offset_left = -286.0

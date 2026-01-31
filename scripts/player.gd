@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const JUMP_VELOCITY = -130.0 # Increased slightly for better feel
-const JUMP_FORWARD_BOOST = 20.0 # The "force" only applied when jumping
+const JUMP_FORWARD_BOOST = 0.0 # The "force" only applied when jumping
 
 # CONTROL HOW FAST SLOPES ARE
 # Increase this to make sliding down ramps much faster
@@ -86,4 +86,3 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.flip_h = true
 
 	move_and_slide()
-	

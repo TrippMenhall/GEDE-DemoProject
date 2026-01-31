@@ -1,0 +1,54 @@
+[gd_scene format=4 uid="uid://blexg20uv35m7"]
+
+[ext_resource type="Texture2D" uid="uid://2cy61adapmnx" path="res://assets/sprites/my_world_tileset_simple.png" id="1_kqnnp"]
+[ext_resource type="Texture2D" uid="uid://drdfu5n3ewf1l" path="res://assets/sprites/my_world_tileset.png" id="2_qupk1"]
+[ext_resource type="PackedScene" uid="uid://bys53cvdwenf0" path="res://scenes/killzone.tscn" id="3_q34t0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kp0sc"]
+texture = ExtResource("1_kqnnp")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_edcek"]
+texture = ExtResource("2_qupk1")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:2/0 = 0
+1:1/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_p12a6"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_kp0sc")
+sources/1 = SubResource("TileSetAtlasSource_edcek")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n0gti"]
+radius = 11.313705
+height = 31.112686
+
+[node name="BgSpikeRamp" type="Node2D" unique_id=1922592377]
+
+[node name="StartPoint" type="Marker2D" parent="." unique_id=1152317663]
+
+[node name="EndPoint" type="Marker2D" parent="." unique_id=642704370]
+position = Vector2(256, 256)
+
+[node name="Ramp w Big Spike2" type="TileMapLayer" parent="." unique_id=997123640]
+position = Vector2(512, 512)
+tile_map_data = PackedByteArray("AADg/+D/AAAAAAAAAADg/+H/AAAAAAAAADDh/+H/AAAAAAAAAADh/+L/AAAAAAAAADDi/+L/AAAAAAAAAADi/+P/AAAAAAAAADDj/+P/AAAAAAAAAADj/+T/AAAAAAAAADDk/+T/AAAAAAAAAADk/+X/AAAAAAAAADDl/+X/AAAAAAAAAADl/+b/AAAAAAAAADDm/+b/AAAAAAAAAADm/+f/AAAAAAAAADDn/+b/AQABAAEAAADn/+f/AQABAAIAAADn/+j/AAAAAAAAADDo/+b/AQACAAEAAADo/+f/AQACAAIAAADo/+j/AAAAAAAAAADo/+n/AAAAAAAAADDp/+n/AAAAAAAAAADp/+r/AAAAAAAAADDq/+r/AAAAAAAAAADq/+v/AAAAAAAAADDr/+v/AAAAAAAAAADr/+z/AAAAAAAAADDs/+z/AAAAAAAAAADs/+3/AAAAAAAAADDt/+3/AAAAAAAAAADt/+7/AAAAAAAAADDu/+7/AAAAAAAAAADu/+//AAAAAAAAADDv/+//AAAAAAAAAADv//D/AAAAAAAAADA=")
+tile_set = SubResource("TileSet_p12a6")
+
+[node name="Killzone2" parent="." unique_id=898511383 instance=ExtResource("3_q34t0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone2" unique_id=227361156]
+position = Vector2(128, 114)
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_n0gti")

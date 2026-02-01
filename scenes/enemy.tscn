@@ -1,7 +1,98 @@
 [gd_scene format=3 uid="uid://c1ri72m416tdd"]
 
+[ext_resource type="Texture2D" uid="uid://cajd0hxxerig6" path="res://assets/sprites/Enemy.png" id="1_7p1mj"]
+[ext_resource type="PackedScene" uid="uid://bys53cvdwenf0" path="res://scenes/killzone.tscn" id="2_md0e3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p1mj"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipns3"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nenq2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md0e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ra3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uy6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4w8v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p1mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md484")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipns3")
+}],
+"loop": true,
+"name": &"idle_ramp",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
+size = Vector2(6, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+size = Vector2(7.778176, 4.2426405)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=895834269]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1299470286]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_nenq2")
+animation = &"idle_ramp"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=235530617]
+[node name="Killzone" parent="." unique_id=898511383 instance=ExtResource("2_md0e3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=235530617]
+position = Vector2(2, -17.5)
+shape = SubResource("RectangleShape2D_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1074264216]
+position = Vector2(2.25, -4.75)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_md0e3")

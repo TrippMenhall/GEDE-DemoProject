@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b541vh5s8wqtb" path="res://scenes/basic_ramp.tscn" id="2_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bujcdccqsljo4" path="res://scenes/sm_spike_ramp.tscn" id="3_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://blexg20uv35m7" path="res://scenes/bg_spike_ramp.tscn" id="4_gee14"]
+[ext_resource type="PackedScene" uid="uid://rtj3j8mia88p" path="res://scenes/1_enemy_ramp.tscn" id="5_0tnpc"]
 [ext_resource type="Script" uid="uid://cqlwsm0ciikmr" path="res://scripts/level_manager.gd" id="5_iywne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
@@ -39,7 +40,7 @@ sources/1 = SubResource("TileSetAtlasSource_u5sy4")
 
 [node name="LevelManager" type="Node2D" parent="." unique_id=1277212908 node_paths=PackedStringArray("player")]
 script = ExtResource("5_iywne")
-chunk_scenes = Array[PackedScene]([ExtResource("2_p57ef"), ExtResource("3_u5sy4"), ExtResource("4_gee14")])
+chunk_scenes = Array[PackedScene]([ExtResource("2_p57ef"), ExtResource("3_u5sy4"), ExtResource("4_gee14"), ExtResource("5_0tnpc")])
 player = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1736892085 instance=ExtResource("2_lnu2h")]

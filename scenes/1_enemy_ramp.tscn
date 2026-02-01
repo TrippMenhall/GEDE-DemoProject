@@ -1,0 +1,46 @@
+[gd_scene format=4 uid="uid://rtj3j8mia88p"]
+
+[ext_resource type="Texture2D" uid="uid://2cy61adapmnx" path="res://assets/sprites/my_world_tileset_simple.png" id="1_x2img"]
+[ext_resource type="Texture2D" uid="uid://drdfu5n3ewf1l" path="res://assets/sprites/my_world_tileset.png" id="2_a7vem"]
+[ext_resource type="PackedScene" uid="uid://c1ri72m416tdd" path="res://scenes/enemy.tscn" id="3_a7vem"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t2o6w"]
+texture = ExtResource("1_x2img")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qihym"]
+texture = ExtResource("2_a7vem")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:2/0 = 0
+1:1/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_50itn"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_t2o6w")
+sources/1 = SubResource("TileSetAtlasSource_qihym")
+
+[node name="BasicRamp" type="Node2D" unique_id=1997455905]
+
+[node name="StartPoint" type="Marker2D" parent="." unique_id=2115569807]
+
+[node name="EndPoint" type="Marker2D" parent="." unique_id=971278451]
+position = Vector2(256, 256)
+
+[node name="Ramp" type="TileMapLayer" parent="." unique_id=894477349]
+position = Vector2(-256, -256)
+tile_map_data = PackedByteArray("AAAQABAAAAAAAAAAAAAQABEAAAAAAAAAADARABEAAAAAAAAAAAARABIAAAAAAAAAADASABIAAAAAAAAAAAASABMAAAAAAAAAADATABMAAAAAAAAAAAATABQAAAAAAAAAADAUABQAAAAAAAAAAAAUABUAAAAAAAAAADAVABUAAAAAAAAAAAAVABYAAAAAAAAAADAWABYAAAAAAAAAAAAWABcAAAAAAAAAADAXABcAAAAAAAAAAAAXABgAAAAAAAAAADAYABgAAAAAAAAAAAAYABkAAAAAAAAAADAZABkAAAAAAAAAAAAZABoAAAAAAAAAADAaABoAAAAAAAAAAAAaABsAAAAAAAAAADAbABsAAAAAAAAAAAAbABwAAAAAAAAAADAcABwAAAAAAAAAAAAcAB0AAAAAAAAAADAdAB0AAAAAAAAAAAAdAB4AAAAAAAAAADAeAB4AAAAAAAAAAAAeAB8AAAAAAAAAADAfAB8AAAAAAAAAAAAfACAAAAAAAAAAADA=")
+tile_set = SubResource("TileSet_50itn")
+
+[node name="Enemy" parent="." unique_id=895834269 instance=ExtResource("3_a7vem")]
+position = Vector2(127, 130)

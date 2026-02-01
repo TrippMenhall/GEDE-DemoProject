@@ -8,6 +8,9 @@ const FLAT_FRICTION = 500.0 # Friction on flat ground
 var is_dead: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_shape_2d_normal: CollisionShape2D = $"CollisionShape2D-normal"
+@onready var collision_shape_2d_jump: CollisionShape2D = $"CollisionShape2D-jump"
+@onready var collision_shape_2d_sliding: CollisionShape2D = $"CollisionShape2D-sliding"
 
 func _ready() -> void:
 	floor_max_angle = deg_to_rad(80.0)
@@ -17,8 +20,9 @@ func _ready() -> void:
 func die() -> void:
 	is_dead = true
 	animated_sprite.play("roll")
-	if has_node("CollisionShape2D"):
-		$CollisionShape2D.queue_free()
+	$"CollisionShape2D-jump".queue_free()
+	$"CollisionShape2D-sliding".queue_free()
+	$"CollisionShape2D-normal".queue_free()
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -64,12 +68,22 @@ func _physics_process(delta: float) -> void:
 			
 	# 3. ANIMATION & FLIPPING
 	if is_on_floor():
-		if abs(velocity.x) > 10:
-			animated_sprite.play("idle") # TODO: Add slide animation
+		if abs(velocity.x) > 0:
+			animated_sprite.play("slide")
+			collision_shape_2d_sliding.disabled = false
+			collision_shape_2d_jump.disabled = true
+			collision_shape_2d_normal.disabled = true
 		else:
 			animated_sprite.play("idle")
+			collision_shape_2d_sliding.disabled = true
+			collision_shape_2d_jump.disabled = true
+			collision_shape_2d_normal.disabled = false
 	else:
 		animated_sprite.play("jump")
+		collision_shape_2d_sliding.disabled = true
+		collision_shape_2d_jump.disabled = false
+		collision_shape_2d_normal.disabled = true
+		
 
 	if velocity.x > 1.0: 
 		animated_sprite.flip_h = false

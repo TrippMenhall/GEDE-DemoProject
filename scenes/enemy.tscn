@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c1ri72m416tdd"]
 
+[ext_resource type="Script" uid="uid://c74cwy8ejp2ft" path="res://scripts/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://cajd0hxxerig6" path="res://assets/sprites/Enemy.png" id="1_7p1mj"]
 [ext_resource type="PackedScene" uid="uid://bys53cvdwenf0" path="res://scenes/killzone.tscn" id="2_md0e3"]
 
@@ -76,14 +77,17 @@ animations = [{
 size = Vector2(6, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
-size = Vector2(7.778176, 4.2426405)
+size = Vector2(2.8890882, 28.060665)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=895834269]
+script = ExtResource("1_4ra3w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1299470286]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_nenq2")
 animation = &"idle_ramp"
+autoplay = "idle_ramp"
+frame_progress = 0.23006085
 
 [node name="Killzone" parent="." unique_id=898511383 instance=ExtResource("2_md0e3")]
 
@@ -92,7 +96,6 @@ position = Vector2(2, -17.5)
 shape = SubResource("RectangleShape2D_7p1mj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1074264216]
-position = Vector2(2.25, -4.75)
-rotation = 0.7853982
+position = Vector2(2, -16.96967)
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_md0e3")

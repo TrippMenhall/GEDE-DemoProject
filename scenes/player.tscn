@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpifu6iaij737" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dssnmbhg1mtt2" path="res://assets/sprites/Hero.png" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://dgs56hfvl2wke" path="res://scenes/laser.tscn" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dxvnuixxv5fw7" path="res://assets/sprites/HeroSlideJump.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://wxbg8rxpigxy" path="res://assets/sprites/HeroDeath.png" id="4_dqkch"]
 
@@ -122,11 +123,12 @@ size = Vector2(12.000002, 20.000004)
 collision_layer = 2
 floor_max_angle = 0.9721484
 script = ExtResource("1_onrkg")
+laser_scene = ExtResource("2_qlg0r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=394185392]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"roll"
+animation = &"slide"
 
 [node name="CollisionShape2D-sliding" type="CollisionShape2D" parent="." unique_id=1204675975]
 position = Vector2(2.4644663, -15.535534)
@@ -146,3 +148,6 @@ position = Vector2(-5.9604645e-08, -15)
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_4flbx")
 disabled = true
+
+[node name="EyePosition" type="Marker2D" parent="." unique_id=1595964438]
+position = Vector2(-3, -24)

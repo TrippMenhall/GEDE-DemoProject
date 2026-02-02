@@ -1,11 +1,14 @@
 [gd_scene format=4 uid="uid://dekrf8fp0hkpw"]
 
 [ext_resource type="Texture2D" uid="uid://cjfilb34t4e1y" path="res://assets/sprites/cloud.png" id="1_gee14"]
+[ext_resource type="Script" uid="uid://c734ai2ad08th" path="res://scripts/score_label.gd" id="1_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://2cy61adapmnx" path="res://assets/sprites/my_world_tileset_simple.png" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://drdfu5n3ewf1l" path="res://assets/sprites/my_world_tileset.png" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://d0f4ardtoo0a8" path="res://scenes/player.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://rtj3j8mia88p" path="res://scenes/1_enemy_ramp.tscn" id="5_0tnpc"]
+[ext_resource type="FontFile" uid="uid://mjjf8xofctq5" path="res://assets/fonts/Pixel Digivolve.otf" id="5_gee14"]
 [ext_resource type="Script" uid="uid://cqlwsm0ciikmr" path="res://scripts/level_manager.gd" id="5_iywne"]
+[ext_resource type="Script" uid="uid://ys5bm6njbap1" path="res://scripts/high_score_label.gd" id="7_0tnpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
 texture = ExtResource("1_yqjtg")
@@ -66,6 +69,26 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 150.0
 initial_velocity_max = 150.0
 scale_amount_max = 2.5
+
+[node name="ScoreLabel" type="Label" parent="Player/Camera2D" unique_id=1805078312]
+offset_left = -452.0
+offset_top = -218.0
+offset_right = -337.0
+offset_bottom = -188.0
+theme_override_fonts/font = ExtResource("5_gee14")
+theme_override_font_sizes/font_size = 25
+text = "Score: 0"
+script = ExtResource("1_u5sy4")
+
+[node name="HighScoreLabel" type="Label" parent="Player/Camera2D" unique_id=1887987592]
+offset_left = -452.0
+offset_top = -250.0
+offset_right = -337.0
+offset_bottom = -220.0
+theme_override_fonts/font = ExtResource("5_gee14")
+theme_override_font_sizes/font_size = 25
+text = "High Score: 0"
+script = ExtResource("7_0tnpc")
 
 [node name="Label" type="Label" parent="." unique_id=1266554937]
 offset_left = -286.0

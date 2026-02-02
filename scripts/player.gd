@@ -37,6 +37,8 @@ func die() -> void:
 	await get_tree().create_timer(1.0).timeout
 	
 	Engine.time_scale = 1.0
+	
+	GameManager.score = 0
 	get_tree().reload_current_scene()
 
 func shoot_laser():

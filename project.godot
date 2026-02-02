@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GEDE_Demo"
-run/main_scene="uid://dekrf8fp0hkpw"
+run/main_scene="uid://dvitc3lu0i4kv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

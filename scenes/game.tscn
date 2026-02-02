@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://mjjf8xofctq5" path="res://assets/fonts/Pixel Digivolve.otf" id="5_gee14"]
 [ext_resource type="Script" uid="uid://cqlwsm0ciikmr" path="res://scripts/level_manager.gd" id="5_iywne"]
 [ext_resource type="Script" uid="uid://ys5bm6njbap1" path="res://scripts/high_score_label.gd" id="7_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://cs46rooo3dvol" path="res://scenes/death_menu.tscn" id="10_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
 texture = ExtResource("1_yqjtg")
@@ -43,10 +44,11 @@ script = ExtResource("5_iywne")
 chunk_scenes = Array[PackedScene]([ExtResource("5_0tnpc")])
 player = NodePath("../Player")
 
-[node name="Player" parent="." unique_id=1736892085 instance=ExtResource("2_lnu2h")]
+[node name="Player" parent="." unique_id=1736892085 node_paths=PackedStringArray("death_menu") instance=ExtResource("2_lnu2h")]
 z_index = 5
 position = Vector2(-156, -1188)
 floor_max_angle = 0.0
+death_menu = NodePath("../UI_Layer/DeathMenu")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=198670200]
 position = Vector2(61, 43)
@@ -127,3 +129,8 @@ tile_set = SubResource("TileSet_feb5d")
 position = Vector2(-256, -256)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAADABAAEAAAAAAAAAAAABAAIAAAAAAAAAADACAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAADAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAADAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAADAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAADAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAADAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAADAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAADAKAAoAAAAAAAAAAAAKAAsAAAAAAAAAADALAAsAAAAAAAAAAAALAAwAAAAAAAAAADAMAAwAAAAAAAAAAAAMAA0AAAAAAAAAADANAA0AAAAAAAAAAAANAA4AAAAAAAAAADAOAA4AAAAAAAAAAAAOAA8AAAAAAAAAADAPAA8AAAAAAAAAAAACAAMAAAAAAAAAADAPABAAAAAAAAAAADA=")
 tile_set = SubResource("TileSet_feb5d")
+
+[node name="UI_Layer" type="CanvasLayer" parent="." unique_id=191591364]
+
+[node name="DeathMenu" parent="UI_Layer" unique_id=804144260 instance=ExtResource("10_vtaks")]
+visible = false

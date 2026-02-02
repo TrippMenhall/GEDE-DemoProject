@@ -7,6 +7,7 @@ const FLAT_FRICTION = 500.0
 
 var is_dead: bool = false
 
+@export var death_menu: Control
 @export var laser_scene: PackedScene
 @onready var eye_position: Marker2D = $EyePosition
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -38,8 +39,8 @@ func die() -> void:
 	
 	Engine.time_scale = 1.0
 	
-	GameManager.score = 0
-	get_tree().reload_current_scene()
+	if death_menu:
+		death_menu.visible = true
 
 func shoot_laser():
 	if not laser_scene || is_dead || not is_on_floor(): 

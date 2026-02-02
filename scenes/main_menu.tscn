@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dvitc3lu0i4kv"]
+
+[ext_resource type="Script" uid="uid://b37p0iiajiotl" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://mjjf8xofctq5" path="res://assets/fonts/Pixel Digivolve.otf" id="2_bqqt6"]
+
+[node name="MainMenu" type="Control" unique_id=804144260]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=953872392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.21960784, 0.5686275, 0.6509804, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=539065488]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=997155304]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1855762495]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 250
+text = "No BRAKES!"
+horizontal_alignment = 1
+
+[node name="Scores" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1332263446]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="HighScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/Scores" unique_id=1162468165]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 80
+text = "High Score: 0"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=491456513]
+layout_mode = 2
+theme_override_constants/margin_left = 350
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 350
+theme_override_constants/margin_bottom = 20
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=618053418]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 100
+text = "Start"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1145725144]
+layout_mode = 2
+theme_override_constants/margin_left = 450
+theme_override_constants/margin_right = 450
+theme_override_constants/margin_bottom = 20
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2" unique_id=1270027482]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 75
+text = "Options"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1951575338]
+layout_mode = 2
+theme_override_constants/margin_left = 580
+theme_override_constants/margin_right = 580
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer3" unique_id=102710873]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 75
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer3/QuitButton" to="." method="_on_quit_button_pressed"]

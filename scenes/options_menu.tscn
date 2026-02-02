@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b7gx1sbl0dc4k"]
+
+[ext_resource type="Script" uid="uid://bjkc54qq3vmug" path="res://scripts/options_menu.gd" id="1_ijpji"]
+[ext_resource type="FontFile" uid="uid://mjjf8xofctq5" path="res://assets/fonts/Pixel Digivolve.otf" id="1_liyum"]
+
+[node name="OptionsMenu" type="Control" unique_id=804144260]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ijpji")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=953872392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.31616744, 0.31616732, 0.31616735, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=539065488]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=997155304]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1855762495]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_liyum")
+theme_override_font_sizes/font_size = 250
+text = "Options"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=491456513]
+layout_mode = 2
+theme_override_constants/margin_left = 180
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 180
+theme_override_constants/margin_bottom = 20
+
+[node name="ResetScoreButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=618053418]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_liyum")
+theme_override_font_sizes/font_size = 100
+text = "Reset High Score"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1951575338]
+layout_mode = 2
+theme_override_constants/margin_left = 580
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 580
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer3" unique_id=102710873]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_liyum")
+theme_override_font_sizes/font_size = 75
+text = "Back"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=1790960421]
+title = "Confirm Reset"
+initial_position = 2
+dialog_text = "Are you sure you want to delete your high score? This cannot be undone."
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ResetScoreButton" to="." method="_on_reset_score_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer3/BackButton" to="." method="_on_back_button_pressed"]
